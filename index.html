@@ -75,28 +75,56 @@
 </div>
 
 <script>
-    document.getElementById('treasureHuntForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the form from submitting the default way
+// Function to send game data to Google Sheets using Google Apps Script
+function submitGameData(playerName, timeTaken) {
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyqh4q78SWA7CSifcSXYPJUf3l88TLPaGEzj4DtQg/exec';  // Replace with your actual script URL
+  const formData = new URLSearchParams();
+  formData.append('playerName', playerName);
+  formData.append('timeTaken', timeTaken);
 
-        // Get user inputs for all members
-        const name1 = document.getElementById('name1').value;
-        const department1 = document.getElementById('department1').value;
-        const name2 = document.getElementById('name2').value;
-        const department2 = document.getElementById('department2').value;
-        const name3 = document.getElementById('name3').value;
-        const department3 = document.getElementById('department3').value;
+  fetch(scriptURL, { method: 'POST', body: formData })
+    .then(response => console.log('Success:', response))
+    .catch(error => console.error('Error:', error));
+}
 
+document.getElementById('treasureHuntForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting the default way
+
+    // Get user inputs for all members
+    const name1 = document.getElementById('name1').value;
+    const department1 = document.getElementById('department1').value;
+    const name2 = document.getElementById('name2').value;
+    const department2 = document.getElementById('department2').value;
+    const name3 = document.getElementById('name3').value;
+    const department3 = document.getElementById('department3').value;
+
+    // Simulate the timer (you can replace this with an actual game timer)
+    let startTime = Date.now();
+    let elapsedTime = 0;
+
+    // This is where you would implement the actual game timer logic
+    // For example, you can update `elapsedTime` when the game finishes.
+
+    setTimeout(() => {
+        // Simulating time taken for the game (in seconds)
+        elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+        
         // Show a welcome message with the user details
         const message = `
             Welcome ${name1} from ${department1}!
             Welcome ${name2} from ${department2}!
             Welcome ${name3} from ${department3}!
+            Game completed in ${elapsedTime} seconds.
         `;
         alert(message);
 
+        // Send the data to Google Sheets using the submitGameData function
+        submitGameData(name1, elapsedTime); // You can send more data as required (name1, name2, etc.)
+
         // Redirect to the Interacty game (replace with your actual Interacty game URL)
         window.location.href = "https://interacty.me/projects/d851c461bc11984a";
-    });
+    }, 2000); // Simulating 2 seconds for demo purposes
+});
 </script>
 
 </body>
