@@ -70,6 +70,12 @@
         <label for="department3">Department:</label>
         <input type="text" id="department3" name="department3" required>
 
+        <label for="department4">Department:</label>
+        <input type="text" id="department4" name="department4" required>
+
+        <label for="department5">Department:</label>
+        <input type="text" id="department5" name="department5" required>
+
         <button type="submit">Start Treasure Hunt</button>
     </form>
 </div>
@@ -97,6 +103,10 @@ document.getElementById('treasureHuntForm').addEventListener('submit', function(
     const department2 = document.getElementById('department2').value;
     const name3 = document.getElementById('name3').value;
     const department3 = document.getElementById('department3').value;
+    const name4 = document.getElementById('name3').value;
+    const department4 = document.getElementById('department3').value;
+    const name5 = document.getElementById('name3').value;
+    const department5 = document.getElementById('department3').value;
 
     // Simulate the timer (you can replace this with an actual game timer)
     let startTime = Date.now();
@@ -114,7 +124,9 @@ document.getElementById('treasureHuntForm').addEventListener('submit', function(
             Welcome ${name1} from ${department1}!
             Welcome ${name2} from ${department2}!
             Welcome ${name3} from ${department3}!
-            Game completed in ${elapsedTime} seconds.
+            Welcome ${name4} from ${department4}!
+            Welcome ${name5} from ${department5}!
+           
         `;
         alert(message);
 
